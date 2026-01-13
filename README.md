@@ -4,13 +4,13 @@
 
 ## 支持的平台
 
-| 平台                | 源目录        | 打包输出           |
-| ------------------- | ------------- | ------------------ |
-| Vercel              | `vercel/`     | 无需打包           |
-| Cloudflare Worker   | `cloudflare/` | `dist/cloudflare/` |
-| AWS Lambda          | `aws/`        | `dist/aws/`        |
-| GCP Cloud Functions | `gcp/`        | `dist/gcp/`        |
-| Azure Functions     | `azure/`      | `dist/azure/`      |
+| 平台                | 源目录        | 打包输出           | 测试状态  |
+| ------------------- | ------------- | ------------------ | --------- |
+| Vercel              | `vercel/`     | 无需打包           | ✅ 已测试 |
+| Cloudflare Worker   | `cloudflare/` | `dist/cloudflare/` | ✅ 已测试 |
+| AWS Lambda          | `aws/`        | `dist/aws/`        | ⚠️ 未测试 |
+| GCP Cloud Functions | `gcp/`        | `dist/gcp/`        | ⚠️ 未测试 |
+| Azure Functions     | `azure/`      | `dist/azure/`      | ⚠️ 未测试 |
 
 ## 返回格式
 
