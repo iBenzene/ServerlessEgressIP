@@ -1,0 +1,16 @@
+{
+    "name": "serverless-egress-ip-azure",
+    "version": "1.0.0",
+    "type": "module",
+    "main": "src/functions/*.js",
+    "scripts": {
+        "start": "func start",
+        "deploy": "func azure functionapp publish"
+    },
+    "dependencies": {
+        "@azure/functions": "^4.0.0"
+    },
+    "engines": {
+        "node": ">=20"
+    }
+}

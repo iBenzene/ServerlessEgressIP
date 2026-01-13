@@ -1,0 +1,33 @@
+{
+    "name": "serverless-egress-ip",
+    "version": "1.0.0",
+    "description": "Detect egress IP addresses of Serverless functions across multiple FaaS platforms",
+    "type": "module",
+    "scripts": {
+        "test": "node test/test.js",
+        "build:cloudflare": "esbuild cloudflare/index.js --bundle --outfile=dist/cloudflare/index.js --format=esm --platform=neutral",
+        "build:aws": "esbuild aws/index.js --bundle --outfile=dist/aws/index.mjs --format=esm --platform=node --target=node20 && node -e \"require('fs').copyFileSync('aws/template.yaml', 'dist/aws/template.yaml')\"",
+        "build:gcp": "esbuild gcp/index.js --bundle --outfile=dist/gcp/index.js --format=esm --platform=node --target=node20",
+        "build:azure": "esbuild azure/src/functions/index.js --bundle --outfile=dist/azure/src/functions/index.js --format=esm --platform=node --target=node20 --external:@azure/functions && node -e \"const fs=require('fs');fs.copyFileSync('azure/host.json','dist/azure/host.json');fs.copyFileSync('azure/package.json','dist/azure/package.json')\"",
+        "deploy:vercel": "vercel",
+        "deploy:cloudflare": "npm run build:cloudflare && wrangler deploy",
+        "deploy:aws": "npm run build:aws && cd dist/aws && sam build && sam deploy --guided",
+        "deploy:gcp": "npm run build:gcp && gcloud functions deploy detectEgressIP --gen2 --runtime nodejs20 --trigger-http --allow-unauthenticated --source dist/gcp --entry-point detectEgressIP",
+        "deploy:azure": "npm run build:azure && cd dist/azure && npm install && func azure functionapp publish"
+    },
+    "devDependencies": {
+        "esbuild": "^0.20.0"
+    },
+    "keywords": [
+        "serverless",
+        "ip",
+        "egress",
+        "vercel",
+        "cloudflare",
+        "aws",
+        "lambda",
+        "gcp",
+        "azure"
+    ],
+    "license": "MIT"
+}
